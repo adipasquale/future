@@ -2,6 +2,10 @@
 
 yarn develop
 
+```mermaid
+
+```
+
 # deployment on Fly
 
 create a volume future_data
