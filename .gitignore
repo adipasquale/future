@@ -7,3 +7,4 @@ exports
 dist
 build
 .strapi-updater.json
+future.db
