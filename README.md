@@ -3,8 +3,36 @@
 ## Architecture
 
 ```mermaid
-flowchart LR
-  github[GitHub\nhéberge le code]
+flowchart TD
+  subgraph GitHub
+    code["📁 Code Source"]
+    ghaction["⚙️ GitHub Action Eleventy"]
+    www["🌎 site public www.future.com"]
+  end
+  subgraph Fly.io
+    strapi["🌎 site web gestion de contenu"]
+    db["📁 base de données"]
+  end
+  subgraph Cloudinary
+    images["📁 fichiers images"]
+  end
+  dev["🙋‍♀️ développeu·r·se"]
+  auteur["🙋‍♀️ auteur"]
+  visiteur["🙋‍♀️ visiteur"]
+
+  dev -- déploie du nouveau code --> code
+  dev -- change la structure des données --> strapi
+
+  auteur -- ajoute du contenu et des photos --> strapi
+  strapi -- stocke les données --> db
+  strapi -- stocke les photos --> images
+
+  code -- chaque changement déclenche --> ghaction
+  ghaction -- génère et déploie le site --> www
+  strapi -- fournit les données --> ghaction
+  images -- copie les images --> ghaction
+
+  visiteur -- consulte --> www
 ```
 
 
