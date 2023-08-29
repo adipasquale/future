@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Future</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Future" />
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="css/water.css" />
+</head>
+<body>
+  <h1>Future</h1>
+  {% for post in posts %}
+    <article>
+      <h2>{{ post.attributes.title }}</h2>
+      {% for media in post.attributes.medias.data %}
+
+        {# https://res.cloudinary.com/outofscreen/image/upload/v1693322440/thumbnail_portrait_bb74210aa8.jpg #}
+        <img
+          sizes="(min-width: 50em) 50em, 100vw"
+          srcset="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_scale,w_256/{{ media.attributes.hash }}{{ media.attributes.ext }} 256w,
+                  https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_scale,w_512/{{ media.attributes.hash }}{{ media.attributes.ext }} 512w,
+                  https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_scale,w_768/{{ media.attributes.hash }}{{ media.attributes.ext }} 768w,
+                  https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_scale,w_1024/{{ media.attributes.hash }}{{ media.attributes.ext }} 1024w,
+                  https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_scale,w_1280/{{ media.attributes.hash }}{{ media.attributes.ext }} 1280w"
+          src="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_scale,w_512/{{ media.attributes.hash }}{{ media.attributes.ext }}"
+          alt="Responsive house" />
+
+      {% endfor %}
+    </article>
+  {% endfor %}
+</body>
+</html>
