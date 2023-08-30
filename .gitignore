@@ -9,3 +9,4 @@ strapi/future.db
 
 www/.cache
 www/11ty_output
+www/.env

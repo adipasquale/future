@@ -2,6 +2,10 @@
 
 ## Architecture
 
+-
+- [future-strapi.fly.dev/admin](https://future-strapi.fly.dev/admin) : gestion de contenu
+
+
 ```mermaid
 flowchart TD
   subgraph GitHub
