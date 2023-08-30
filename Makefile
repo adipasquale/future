@@ -2,7 +2,7 @@ www-install:
 	cd www && npm install
 
 www-dev:
-	cd www && npx @11ty/eleventy --serve
+	cd www && npm run serve
 
 strapi-install:
 	cd strapi && npm install

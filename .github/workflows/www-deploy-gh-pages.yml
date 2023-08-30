@@ -1,4 +1,4 @@
-name: blah
+name: Deploy www
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
         working-directory: www
       - name: Build
         run: npm run build
-        working-directory: npx @11ty/eleventy
+        working-directory: www
       - name: Deploy to gh pages
         uses: peaceiris/actions-gh-pages@v3
         with:
