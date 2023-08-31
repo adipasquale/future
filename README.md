@@ -2,8 +2,8 @@
 
 ## Architecture
 
--
-- [future-strapi.fly.dev/admin](https://future-strapi.fly.dev/admin) : gestion de contenu
+- [futurefuture.fr](https://www.futurefuture.fr) : le site public
+- [future-strapi.fly.dev/admin](https://future-strapi.fly.dev/admin) : site pour gérer le contenu (via Strapi)
 
 
 ```mermaid
