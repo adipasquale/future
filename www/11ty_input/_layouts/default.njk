@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Future</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Future" />
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="/css/water.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="title">
+      <h1>Future</h1>
+      {% if title %}
+        <a href="/">Accueil</a> >
+        {{ title }}
+      {% endif %}
+    </div>
+    <nav>
+      <a href="#">Menu </a>
+    </nav>
+  </header>
+  <main>
+    <nav class="hide">
+      <a href="/a-propos">À propos</a>
+      <h2>Projets</h2>
+      <ul>
+        {% for projet in projets %}
+          <li>
+            <a href="/projets/{{ projet.attributes.nom | slugify }}">
+              {{ projet.attributes.nom }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+      {% for rubrique in rubriques %}
+        <h2>{{ rubrique.attributes.titre }}</h2>
+        <ul>
+          {% for tag in rubrique.attributes.tags.data %}
+            <li>
+              <a href="/tags/{{ tag.attributes.titre | slugify }}">
+                {{ tag.attributes.titre }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </nav>
+    {{ content | safe }}
+    {% block content %}{% endblock %}
+  </main>
+  <script src="/js/future.js"></script>
+</html>

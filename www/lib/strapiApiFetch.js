@@ -1,12 +1,11 @@
 require('dotenv').config()
 const EleventyFetch = require("@11ty/eleventy-fetch");
 
-module.exports = async function () {
-  let url = `${process.env.STRAPI_API_URL}/api/posts?populate=*&pagination[pageSize]=1000`;
+module.exports = async (path) => {
+  let url = `${process.env.STRAPI_API_URL}/api/${path}`;
 
-  /* This returns a promise */
   const res = await EleventyFetch(url, {
-    duration: "1m",
+    duration: "0m",
     type: "json",
     fetchOptions: {
       headers: {

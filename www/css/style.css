@@ -1,0 +1,73 @@
+@font-face {
+  font-family: 'Satoshi';
+  src:  url('/css/Satoshi-Variable.woff2') format('woff2');
+}
+
+* {
+  font-family: Satoshi;
+}
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/*  header and menu */
+
+header {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 3rem;
+}
+header .title {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  position: relative;
+}
+main nav {
+  position: absolute;
+  right: 0;
+  background: var(--background-body);
+  padding: 0 2rem;
+}
+body nav h2 {
+  font-size: inherit;
+}
+
+
+/* main h2 {
+  margin-bottom: 2rem;
+} */
+.fil-ariane {
+  opacity: 0.7;
+}
+
+/* utilities */
+
+.hide {
+  display: none;
+}
+
+/* medias display */
+
+figure {
+  margin: 0;
+  text-align: center;
+}
+.photos-grid {
+  display: grid;
+  /* 3 photos by row */
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+}
+
+
+/* projets */
+
+.projet-description {
+  margin-top: 3rem;
+}

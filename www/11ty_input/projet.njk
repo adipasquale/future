@@ -1,0 +1,26 @@
+---
+pagination:
+  data: projets
+  size: 1
+  alias: projet
+permalink: "projets/{{ projet.attributes.nom | slugify }}/"
+---
+
+{%- set title = ["Projet", projet.attributes.nom] | join(" ") %}
+{% extends "./_layouts/default.njk" %}
+
+{% block content %}
+  <div class="photos-grid">
+    {% for media in projet.attributes.medias.data %}
+      {% cloudinaryImg media %}
+    {% endfor %}
+  </div>
+
+
+  <div class="projet-description">
+    <h3>Description du projet</h3>
+    <p>
+      {{ projet.attributes.description }}
+    </p>
+  </div>
+{% endblock %}

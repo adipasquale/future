@@ -1,0 +1,18 @@
+---
+pagination:
+  data: tags
+  size: 1
+  alias: tag
+permalink: "tags/{{ tag.attributes.titre | slugify }}/"
+---
+
+{%- set title = tag.attributes.titre %}
+{% extends "./_layouts/default.njk" %}
+
+{% block content %}
+  <div class="photos-grid">
+    {% for media in tag.attributes.medias.data %}
+      {% cloudinaryImg media %}
+    {% endfor %}
+  </div>
+{% endblock %}
