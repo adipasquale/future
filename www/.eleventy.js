@@ -6,8 +6,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addShortcode(
     "cloudinaryImg",
     media => {
-      const { description } = media.attributes
-      const { hash, ext } = media.attributes.media.data.attributes
+      const { hash, ext, caption } = media.attributes
       const filename = `${hash}${ext}`
       return `
         <figure>
@@ -19,8 +18,8 @@ module.exports = function (eleventyConfig) {
                   https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_scale,w_1024/${filename} 1024w,
                   https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_scale,w_1280/${filename} 1280w"
           src="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_scale,w_512/${filename}"
-          alt="${description}" />
-          <figcaption>${description}</figcaption>
+          alt="${caption}" />
+          ${caption ? `<figcaption>${caption}</figcaption>` : ""}
         </figure>
       `
     }

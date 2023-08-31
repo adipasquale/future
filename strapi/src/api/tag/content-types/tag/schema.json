@@ -4,7 +4,8 @@
   "info": {
     "singularName": "tag",
     "pluralName": "tags",
-    "displayName": "Tag"
+    "displayName": "Tag",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,17 +15,21 @@
     "titre": {
       "type": "string"
     },
-    "medias": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::media.media",
-      "inversedBy": "tags"
-    },
     "rubrique": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::rubrique.rubrique",
       "inversedBy": "tags"
+    },
+    "medias": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
