@@ -14,4 +14,15 @@ module.exports = ({ env }) => ({
       },
     },
   },
+  "github-publish": {
+    enabled: true,
+    config: {
+      owner: "adipasquale",
+      repo: "futurefuture",
+      workflow_id: "www-deploy-gh-pages.yml",
+      token: env("GITHUB_TOKEN"),
+      branch: "main"
+    }
+  },
+
 });
