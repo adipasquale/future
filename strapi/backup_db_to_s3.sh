@@ -25,4 +25,4 @@ aws_access_key_id = $AWS_ACCESS_KEY_ID
 aws_secret_access_key = $AWS_SECRET_ACCESS_KEY
 EOF
 
-aws s3 sync --exclude "*" --include "*.db" /data/ s3://appbackups/
+aws s3 sync --no-progress --exclude "*" --include "*.db" /data/ s3://appbackups/
