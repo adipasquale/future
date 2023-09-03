@@ -1,6 +1,5 @@
 apt-get -y install python-pip
 pip install awscli awscli-plugin-endpoint
-cp -f backup_script/.aws.config ~/.aws/config
 
 mkdir ~/.aws
 cat >> ~/.aws/config << EOF
@@ -26,4 +25,4 @@ aws_access_key_id = $AWS_ACCESS_KEY_ID
 aws_secret_access_key = $AWS_SECRET_ACCESS_KEY
 EOF
 
-aws s3 cp /data/future.db s3://appbackups/future.db
+aws s3 sync --exclude "*" --include "*.db" /data/ s3://appbackups/
