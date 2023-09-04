@@ -2,8 +2,22 @@
 layout: default.njk
 ---
 
-<div class="photos-grid">
+<div class="photos-grid" id="gallery">
   {% for media in medias %}
     {% cloudinaryImg media %}
   {% endfor %}
 </div>
+
+<script type="module">
+import PhotoSwipeLightbox from '/js/photoswipe-lightbox.esm.js';
+const lightbox = new PhotoSwipeLightbox({
+  gallery: '#gallery',
+  children: 'a',
+  pswpModule: () => import('/js/photoswipe.esm.js'),
+  showHideAnimationType: 'none',
+  zoomAnimationDuration: 0
+});
+lightbox.init();
+</script>
+
+<link rel="stylesheet" href="/css/photoswipe.css">

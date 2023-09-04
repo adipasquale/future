@@ -2,25 +2,40 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("img")
   eleventyConfig.addPassthroughCopy("js")
   eleventyConfig.addPassthroughCopy("css")
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/photoswipe/dist/photoswipe-lightbox.esm.js": "js/photoswipe-lightbox.esm.js",
+    "node_modules/photoswipe/dist/photoswipe.esm.js": "js/photoswipe.esm.js",
+    "node_modules/photoswipe/dist/photoswipe.css": "css/photoswipe.css",
+  })
+
 
   eleventyConfig.addShortcode(
     "cloudinaryImg",
     media => {
-      const { hash, ext, caption } = media.attributes
+      const { hash, ext, caption, width, height } = media.attributes
       const filename = `${hash}${ext}`
+      const widths = [256, 512, 768, 1024, 1280]
+      const maxWidth = Math.min(width, 1280)
+      const maxHeight = Math.round(maxWidth * (height / width))
+
       return `
-        <figure>
-          <img
-          sizes="(min-width: 50em) 50em, 100vw"
-          srcset="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_scale,w_256/${filename} 256w,
-                  https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_scale,w_512/${filename} 512w,
-                  https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_scale,w_768/${filename} 768w,
-                  https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_scale,w_1024/${filename} 1024w,
-                  https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_scale,w_1280/${filename} 1280w"
-          src="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_scale,w_512/${filename}"
-          alt="${caption}" />
-          ${caption ? `<figcaption>${caption}</figcaption>` : ""}
-        </figure>
+        <a
+          data-pswp-srcset="${widths.map(w => `https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_limit,w_${w}/${filename} ${w}w`).join(", ")}"
+          data-pswp-width="${maxWidth}"
+          data-pswp-height="${maxHeight}"
+          href="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_limit,w_1280/${filename}">
+          <figure>
+            <img
+              width="${maxWidth}"
+              height="${maxWidth * 3 / 2}"
+              sizes="(min-width: 50em) 50em, 100vw"
+              srcset="${widths.map(w => `https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_fill,ar_2:3,w_${w}/${filename} ${w}w`).join(", ")}"
+              src="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_fill,ar_2:3,w_512/${filename}"
+              alt="${caption}"
+              />
+            ${caption ? `<figcaption>${caption}</figcaption>` : ""}
+          </figure>
+        </a>
       `
     }
   )

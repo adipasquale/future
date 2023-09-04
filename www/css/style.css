@@ -60,9 +60,13 @@ figure {
 }
 .photos-grid {
   display: grid;
-  /* 3 photos by row */
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
+}
+@media (min-width: 800px) {
+  .photos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 
@@ -70,4 +74,12 @@ figure {
 
 .projet-description {
   margin-top: 3rem;
+}
+
+/*
+  force hide photoswipe stretched thumb while actual image loads because our thumbs have
+  different aspect ratios than the actual images and that is not handled by photoswipe
+ */
+.pswp__img--placeholder {
+  display: none !important;
 }
