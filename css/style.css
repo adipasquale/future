@@ -1,3 +1,4 @@
+/* general */
 @font-face {
   font-family: 'Satoshi';
   src:  url('/css/Satoshi-Variable.woff2') format('woff2');
@@ -13,22 +14,77 @@
   font-family: Satoshi;
   font-weight: 300;
 }
+
+body {
+  margin-top: 0;
+  padding-top: 0;
+}
+
 a {
   color: inherit;
+}
+
+body > main {
+  // for a-propos page
+  min-height: 80vh;
+}
+
+body > footer {
+  border-top: none;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 0 0 1rem 0;
+  padding: 0;
+}
+
+
+/* utilities */
+
+.hide {
+  display: none;
 }
 
 /*  header and menu */
 
 header {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+header.with-hero-image {
+  height: 100vh;
+}
+header .header-top {
+}
+header .header-bottom {
+  flex: 1;
+  overflow: hidden;
+}
+header .header-spacer {
+  height: 1rem;
+  flex-shrink: 0;
+}
+header .header-bottom.hero-image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+header .title-and-menu-link {
   display: flex;
   align-items: baseline;
   margin: 2rem 0 1rem 0;
-  padding: 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--text-main);
 }
 header h1 {
   margin: 0;
 }
-header nav {
+header nav.menu-link {
   font-size: 2rem;
 }
 header .title {
@@ -37,60 +93,34 @@ header .title {
   margin: 0;
   padding: 0;
 }
-main h2.page-title {
+header h2.page-title {
   font-size: 1rem;
   font-weight: normal;
   margin: 0 0 1rem 0;
   padding: 0;
 }
-
-header {
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--text-main);
-}
-
-/* main {
-  position: relative;
-} */
-main nav {
-  /* padding: 0 2rem; */
-}
-main nav ul {
+header nav.menu ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-body nav h2 {
+header nav.menu h2 {
   font-size: inherit;
   margin: 0;
 }
-main .nav-columns {
+header nav.menu .nav-columns {
   columns: 3;
 }
-main nav .menu-group {
+header nav.menu .menu-group {
   break-inside: avoid-column;
 }
-main nav ul,
-main nav>a {
+header nav.menu ul,
+header nav.menu > a {
   display: block;
   margin-bottom: 1rem;
 }
 .a-propos {
   margin: 2rem 0 1rem 0;
-}
-
-
-/* main h2 {
-  margin-bottom: 2rem;
-} */
-.fil-ariane {
-  opacity: 0.7;
-}
-
-/* utilities */
-
-.hide {
-  display: none;
 }
 
 /* medias display */
@@ -103,6 +133,11 @@ figure {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 1rem;
+  margin-bottom: 3rem;
+}
+.photos-grid img {
+  max-height: 90vh;
+  object-fit: cover;
 }
 @media (min-width: 800px) {
   .photos-grid {
