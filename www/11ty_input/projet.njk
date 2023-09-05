@@ -6,8 +6,9 @@ pagination:
 permalink: "projets/{{ projet.attributes.nom | slugify }}/"
 ---
 
-{%- set title = ["Projet", projet.attributes.nom] | join(" ") %}
 {% extends "./_layouts/default.njk" %}
+
+{%- set title = ["Projet", projet.attributes.nom] | join(" ") %}
 
 {% block content %}
   <div class="photos-grid">

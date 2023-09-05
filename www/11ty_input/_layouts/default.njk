@@ -8,9 +8,10 @@
   <link rel="icon" href="favicon.png">
   <link rel="stylesheet" href="/css/water.css" />
   <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/photoswipe.css">
 </head>
 <body>
-  <header>
+  <header class="{% if heroImage %}with-hero-image{% endif %}">
     <div class="header-top">
       <div class="title-and-menu-link">
         <div class="title">
@@ -59,18 +60,22 @@
     </div>
     {% if heroImage %}
       <div class="header-bottom hero-image">
-        {% cloudinaryImage heroImage %}
+        {% photoswipeLink heroImage %}
+          {% heroImg heroImage %}
+        {% endphotoswipeLink %}
       </div>
       <div class="header-spacer"></div>
     {% endif %}
   </header>
-  <main>
 
+  <main>
     {{ content | safe }}
     {% block content %}{% endblock %}
   </main>
+
   <footer>
     <a href="/">Future</a> · <a href="/a-propos">Contact / À propos</a>
   </footer>
-  <script src="/js/future.js"></script>
+
+  <script src="/js/future.js" type="module"></script>
 </html>

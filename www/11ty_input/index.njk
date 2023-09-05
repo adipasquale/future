@@ -3,23 +3,9 @@
 {%- set heroImage = contenus["photo-principale"].attributes.illustration.data %}
 
 {% block content %}
-  <div class="photos-grid" id="gallery">
+  <div class="photos-grid">
     {% for media in medias %}
       {% galleryImage media %}
     {% endfor %}
   </div>
-
-  <script type="module">
-  import PhotoSwipeLightbox from '/js/photoswipe-lightbox.esm.js';
-  const lightbox = new PhotoSwipeLightbox({
-    gallery: '#gallery',
-    children: 'a',
-    pswpModule: () => import('/js/photoswipe.esm.js'),
-    showHideAnimationType: 'none',
-    zoomAnimationDuration: 0
-  });
-  lightbox.init();
-  </script>
-
-  <link rel="stylesheet" href="/css/photoswipe.css">
 {% endblock %}

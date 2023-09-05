@@ -68,12 +68,8 @@ fly secrets set APP_KEYS=$(openssl rand -base64 32) \
 
 ## TODO
 
-- sur la homepage
-  - mixer l’ordre des photos pour que ca ne soit pas projet par proejt
-
 - dans le menu
   - splitter volontairement les projets a gauche
   - eventuellement justifier la 3e colonne du menu a droite et celle du centre au centre
 
-- sur les pages des tags, grouper par projet, afficher un titre par projet cliquable
 

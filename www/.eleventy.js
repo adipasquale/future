@@ -1,6 +1,7 @@
 const marked = require('marked')
 
-// markdown.register(env, marked);
+const responsiveImageWidths = [512, 1024, 2048]
+const maxResponsiveImageWidth = Math.max(...responsiveImageWidths)
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("img")
@@ -12,50 +13,58 @@ module.exports = function (eleventyConfig) {
     "node_modules/photoswipe/dist/photoswipe.css": "css/photoswipe.css",
   })
 
-
-  const cloudinaryImgHtml = media => {
-    const { hash, ext, caption, width, height } = media.attributes
+  eleventyConfig.addShortcode("heroImg", media => {
+    const { hash, ext, caption, width } = media.attributes
     const filename = `${hash}${ext}`
-    const widths = [512, 1024, 1280]
-    const maxWidth = Math.min(width, 1280)
+    const maxWidth = Math.min(width, maxResponsiveImageWidth)
+    const maxHeight = maxWidth * 1
 
     return `
-        <img
-          width="${maxWidth}"
-          height="${maxWidth * 3 / 2}"
-          sizes="(min-width: 50em) 50em, 100vw"
-          srcset="${widths.map(w => `https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_fill,ar_2:3,w_${w}/${filename} ${w}w`).join(", ")}"
-          src="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_fill,ar_2:3,w_512/${filename}"
-          alt="${caption}"
-          />
-      `
+      <img
+        width="${maxWidth}"
+        height="${maxHeight}"
+        sizes="(min-width: 50em) 50em, 100vw"
+        srcset="${responsiveImageWidths.map(w => `https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_fill,ar_1,w_${w}/${filename} ${w}w`).join(", ")}"
+        src="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_fill,ar_1,w_2048/${filename}"
+        alt="${caption || ""}"
+      />
+    `
+  })
+
+  photoswipeLink = (content, media) => {
+    const { hash, ext, width, height } = media.attributes
+    const filename = `${hash}${ext}`
+    const maxWidth = Math.min(width, maxResponsiveImageWidth)
+    const maxHeight = Math.round(maxWidth * (height / width))
+    return `
+      <a
+        class="photoswipe-item"
+        data-pswp-srcset="${responsiveImageWidths.map(w => `https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_limit,w_${w}/${filename} ${w}w`).join(", ")}"
+        data-pswp-width="${maxWidth}"
+        data-pswp-height="${maxHeight}"
+        href="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_limit,w_1280/${filename}">
+        ${content}
+      </a>
+    `
   }
+  eleventyConfig.addPairedShortcode("photoswipeLink", photoswipeLink)
 
-  eleventyConfig.addShortcode("cloudinaryImage", cloudinaryImgHtml)
+  eleventyConfig.addShortcode("galleryImage", media => {
+    const { hash, ext, width, caption } = media.attributes
+    const filename = `${hash}${ext}`
+    const maxWidth = Math.min(width, maxResponsiveImageWidth)
+    const maxHeight = Math.round(maxWidth * (3 / 2))
 
-  eleventyConfig.addShortcode(
-    "galleryImage",
-    media => {
-      const { hash, ext, caption, width, height } = media.attributes
-      const filename = `${hash}${ext}`
-      const widths = [256, 512, 768, 1024, 1280]
-      const maxWidth = Math.min(width, 1280)
-      const maxHeight = Math.round(maxWidth * (height / width))
-
-      return `
-        <a
-          data-pswp-srcset="${widths.map(w => `https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_limit,w_${w}/${filename} ${w}w`).join(", ")}"
-          data-pswp-width="${maxWidth}"
-          data-pswp-height="${maxHeight}"
-          href="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_limit,w_1280/${filename}">
-          <figure>
-            ${cloudinaryImgHtml(media)}
-          </figure>
-        </a>
-      `
-      // ${caption ? `<figcaption>${caption}</figcaption>` : ""}
-    }
-  )
+    return photoswipeLink(`
+      <img
+        width="${maxWidth}"
+        height="${maxHeight}"
+        sizes="(min-width: 50em) 50em, 100vw"
+        srcset="${responsiveImageWidths.map(w => `https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_fill,ar_2:3,w_${w}/${filename} ${w}w`).join(", ")}"
+        src="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_fill,ar_2:3,w_512/${filename}"
+        alt="${caption || ""}" />
+    `, media)
+  })
 
   eleventyConfig.addFilter("markdown", function (value) {
     return marked.parse(value)

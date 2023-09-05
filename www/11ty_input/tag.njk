@@ -10,9 +10,16 @@ permalink: "tags/{{ tag.attributes.titre | slugify }}/"
 {% extends "./_layouts/default.njk" %}
 
 {% block content %}
-  <div class="photos-grid">
-    {% for media in tag.attributes.medias.data %}
-      {% galleryImage media %}
-    {% endfor %}
-  </div>
+  {% for projet in tag.projets %}
+    <h3>
+      <a href="/projets/{{ projet.nom | slugify }}">
+        Projet {{projet.nom}}
+      </a>
+    </h3>
+    <div class="photos-grid">
+      {% for media in projet.medias %}
+        {% galleryImage media, "<a href='/'>{{tag.attributes.titre}}</a>" %}
+      {% endfor %}
+    </div>
+  {% endfor %}
 {% endblock %}
