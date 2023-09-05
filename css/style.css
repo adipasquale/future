@@ -8,7 +8,6 @@
 }
 a {
   color: inherit;
-  text-decoration: underline;
 }
 
 /*  header and menu */
@@ -16,26 +15,58 @@ a {
 header {
   display: flex;
   align-items: baseline;
-  margin-bottom: 3rem;
+  margin: 2rem 0 1rem 0;
+  padding: 0;
+}
+header h1 {
+  margin: 0;
+}
+header nav {
+  font-size: 2rem;
 }
 header .title {
   flex: 1;
-  text-align: center;
+  text-align: left;
   margin: 0;
   padding: 0;
 }
-
-main {
-  position: relative;
+main h2.page-title {
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 0 0 1rem 0;
+  padding: 0;
 }
+
+header {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #000;
+}
+
+/* main {
+  position: relative;
+} */
 main nav {
-  position: absolute;
-  right: 0;
-  background: var(--background-body);
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
+}
+main nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 body nav h2 {
   font-size: inherit;
+  margin: 0;
+}
+main .nav-columns {
+  columns: 3;
+}
+main nav .menu-group {
+  break-inside: avoid-column;
+}
+main nav ul,
+main nav>a {
+  display: block;
+  margin-bottom: 1rem;
 }
 
 
@@ -60,12 +91,12 @@ figure {
 }
 .photos-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-gap: 1rem;
 }
 @media (min-width: 800px) {
   .photos-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
