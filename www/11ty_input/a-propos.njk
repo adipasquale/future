@@ -3,4 +3,4 @@ layout: default.njk
 title: À propos
 ---
 
-{{ contenus["a-propos"].attributes.contenu | safe }}
+{{ contenus["a-propos"].attributes.contenu | markdown | safe }}

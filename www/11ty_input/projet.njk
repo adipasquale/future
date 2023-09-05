@@ -18,6 +18,6 @@ permalink: "projets/{{ projet.attributes.nom | slugify }}/"
 
 
   <div class="projet-description">
-    {{ projet.attributes.description | safe }}
+    {{ projet.attributes.description | markdown | safe }}
   </div>
 {% endblock %}

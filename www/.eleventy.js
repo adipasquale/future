@@ -1,11 +1,7 @@
-var nunjucks = require('nunjucks'),
-  markdown = require('nunjucks-markdown'),
-  marked = require('marked');
+const marked = require('marked')
+const { sanitize } = require('dompurify')
 
-var env = nunjucks.configure('views');
-
-// The second argument can be any function that renders markdown
-markdown.register(env, marked);
+// markdown.register(env, marked);
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("img")
@@ -48,6 +44,10 @@ module.exports = function (eleventyConfig) {
       `
     }
   )
+
+  eleventyConfig.addFilter("markdown", function (value) {
+    return marked.parse(value)
+  })
 
   eleventyConfig.addFilter("jsonify", function (value) {
     return JSON.stringify(value)

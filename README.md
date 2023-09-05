@@ -68,11 +68,17 @@ fly secrets set APP_KEYS=$(openssl rand -base64 32) \
 
 ## TODO
 
+- reparer l’affichage du markdown dans a propos
+
 - sur la homepage
-  - pas de grille, une seule photo par ligne
-  - premiere photo configurable sur le cms
+  - premiere photo configurable sur le gestionnaire de contenu
     - sur mobile, c’est juste la premiere
     - sur desktop, la premiere s’affiche independemment sur une seule ligne
   - mixer l’ordre des photos pour que ca ne soit pas projet par proejt
+
+- dans le menu
+  - splitter volontairement les projets a gauche
   - eventuellement justifier la 3e colonne du menu a droite et celle du centre au centre
+
+- sur les pages des tags, grouper par projet, afficher un titre par projet cliquable
 
