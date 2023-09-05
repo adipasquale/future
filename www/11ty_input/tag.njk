@@ -12,7 +12,7 @@ permalink: "tags/{{ tag.attributes.titre | slugify }}/"
 {% block content %}
   <div class="photos-grid">
     {% for media in tag.attributes.medias.data %}
-      {% cloudinaryImg media %}
+      {% galleryImage media %}
     {% endfor %}
   </div>
 {% endblock %}

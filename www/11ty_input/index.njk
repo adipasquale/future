@@ -1,23 +1,25 @@
----
-layout: default.njk
----
+{% extends "./_layouts/default.njk" %}
 
-<div class="photos-grid" id="gallery">
-  {% for media in medias %}
-    {% cloudinaryImg media %}
-  {% endfor %}
-</div>
+{%- set heroImage = contenus["photo-principale"].attributes.illustration.data %}
 
-<script type="module">
-import PhotoSwipeLightbox from '/js/photoswipe-lightbox.esm.js';
-const lightbox = new PhotoSwipeLightbox({
-  gallery: '#gallery',
-  children: 'a',
-  pswpModule: () => import('/js/photoswipe.esm.js'),
-  showHideAnimationType: 'none',
-  zoomAnimationDuration: 0
-});
-lightbox.init();
-</script>
+{% block content %}
+  <div class="photos-grid" id="gallery">
+    {% for media in medias %}
+      {% galleryImage media %}
+    {% endfor %}
+  </div>
 
-<link rel="stylesheet" href="/css/photoswipe.css">
+  <script type="module">
+  import PhotoSwipeLightbox from '/js/photoswipe-lightbox.esm.js';
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '#gallery',
+    children: 'a',
+    pswpModule: () => import('/js/photoswipe.esm.js'),
+    showHideAnimationType: 'none',
+    zoomAnimationDuration: 0
+  });
+  lightbox.init();
+  </script>
+
+  <link rel="stylesheet" href="/css/photoswipe.css">
+{% endblock %}

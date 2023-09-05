@@ -13,8 +13,28 @@ module.exports = function (eleventyConfig) {
   })
 
 
+  const cloudinaryImgHtml = media => {
+    const { hash, ext, caption, width, height } = media.attributes
+    const filename = `${hash}${ext}`
+    const widths = [512, 1024, 1280]
+    const maxWidth = Math.min(width, 1280)
+
+    return `
+        <img
+          width="${maxWidth}"
+          height="${maxWidth * 3 / 2}"
+          sizes="(min-width: 50em) 50em, 100vw"
+          srcset="${widths.map(w => `https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_fill,ar_2:3,w_${w}/${filename} ${w}w`).join(", ")}"
+          src="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_fill,ar_2:3,w_512/${filename}"
+          alt="${caption}"
+          />
+      `
+  }
+
+  eleventyConfig.addShortcode("cloudinaryImage", cloudinaryImgHtml)
+
   eleventyConfig.addShortcode(
-    "cloudinaryImg",
+    "galleryImage",
     media => {
       const { hash, ext, caption, width, height } = media.attributes
       const filename = `${hash}${ext}`
@@ -29,18 +49,11 @@ module.exports = function (eleventyConfig) {
           data-pswp-height="${maxHeight}"
           href="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_limit,w_1280/${filename}">
           <figure>
-            <img
-              width="${maxWidth}"
-              height="${maxWidth * 3 / 2}"
-              sizes="(min-width: 50em) 50em, 100vw"
-              srcset="${widths.map(w => `https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_fill,ar_2:3,w_${w}/${filename} ${w}w`).join(", ")}"
-              src="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_fill,ar_2:3,w_512/${filename}"
-              alt="${caption}"
-              />
-            ${caption ? `<figcaption>${caption}</figcaption>` : ""}
+            ${cloudinaryImgHtml(media)}
           </figure>
         </a>
       `
+      // ${caption ? `<figcaption>${caption}</figcaption>` : ""}
     }
   )
 

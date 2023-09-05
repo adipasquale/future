@@ -68,12 +68,7 @@ fly secrets set APP_KEYS=$(openssl rand -base64 32) \
 
 ## TODO
 
-- reparer l’affichage du markdown dans a propos
-
 - sur la homepage
-  - premiere photo configurable sur le gestionnaire de contenu
-    - sur mobile, c’est juste la premiere
-    - sur desktop, la premiere s’affiche independemment sur une seule ligne
   - mixer l’ordre des photos pour que ca ne soit pas projet par proejt
 
 - dans le menu
