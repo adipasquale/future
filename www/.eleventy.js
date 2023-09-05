@@ -1,5 +1,4 @@
 const marked = require('marked')
-const { sanitize } = require('dompurify')
 
 // markdown.register(env, marked);
 
