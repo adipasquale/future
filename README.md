@@ -64,3 +64,15 @@ fly secrets set APP_KEYS=$(openssl rand -base64 32) \
   CLOUDINARY_KEY=123456789 \
   CLOUDINARY_SECRET=-abcdefghijklmnop
 ```
+
+
+## TODO
+
+- sur la homepage
+  - pas de grille, une seule photo par ligne
+  - premiere photo configurable sur le cms
+    - sur mobile, c’est juste la premiere
+    - sur desktop, la premiere s’affiche independemment sur une seule ligne
+  - mixer l’ordre des photos pour que ca ne soit pas projet par proejt
+  - eventuellement justifier la 3e colonne du menu a droite et celle du centre au centre
+

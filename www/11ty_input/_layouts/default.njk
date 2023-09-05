@@ -12,42 +12,49 @@
 <body>
   <header>
     <div class="title">
-      <h1>Future</h1>
-      {% if title %}
-        <a href="/">Accueil</a> >
-        {{ title }}
-      {% endif %}
+      <h1>
+        <a href="/">Future</a>
+      </h1>
     </div>
     <nav>
-      <a href="#">Menu </a>
+      <a href="#">☰</a>
     </nav>
   </header>
   <main>
     <nav class="hide">
-      <a href="/a-propos">À propos</a>
-      <h2>Projets</h2>
-      <ul>
-        {% for projet in projets %}
-          <li>
-            <a href="/projets/{{ projet.attributes.nom | slugify }}">
-              {{ projet.attributes.nom }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-      {% for rubrique in rubriques %}
-        <h2>{{ rubrique.attributes.titre }}</h2>
+      <div class="nav-columns">
+        <h2>Projets</h2>
         <ul>
-          {% for tag in rubrique.attributes.tags.data %}
+          {% for projet in projets %}
             <li>
-              <a href="/tags/{{ tag.attributes.titre | slugify }}">
-                {{ tag.attributes.titre }}
+              <a href="/projets/{{ projet.attributes.nom | slugify }}">
+                {{ projet.attributes.nom }}
               </a>
             </li>
           {% endfor %}
         </ul>
-      {% endfor %}
+        {% for rubrique in rubriques %}
+          <div class="menu-group">
+            <h2>{{ rubrique.attributes.titre }}</h2>
+            <ul>
+              {% for tag in rubrique.attributes.tags.data %}
+                <li>
+                  <a href="/tags/{{ tag.attributes.titre | slugify }}">
+                    {{ tag.attributes.titre }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endfor %}
+      </div>
+      <a href="/a-propos">À propos</a>
     </nav>
+
+    {% if title %}
+      <h2 class="page-title">{{ title }}</h2>
+    {% endif %}
+
     {{ content | safe }}
     {% block content %}{% endblock %}
   </main>

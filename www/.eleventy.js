@@ -1,3 +1,12 @@
+var nunjucks = require('nunjucks'),
+  markdown = require('nunjucks-markdown'),
+  marked = require('marked');
+
+var env = nunjucks.configure('views');
+
+// The second argument can be any function that renders markdown
+markdown.register(env, marked);
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("img")
   eleventyConfig.addPassthroughCopy("js")
