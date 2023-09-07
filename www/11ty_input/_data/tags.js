@@ -7,12 +7,9 @@ module.exports = async () => {
     .map(projet => ({ id: projet.id, ...projet.attributes, allMediaIds: projet.allMediaIds }))
   const tags = (await strapiApiFetch(`tags?populate=*&pagination[pageSize]=1000`))
     .map(tag => {
-      console.log("..")
-      console.log("now processing tag", tag)
       const projets = []
       tag.attributes.medias.data?.forEach(media => {
         const mediaProjet = allProjets.find(projet => projet.allMediaIds.includes(media.id))
-        console.log("searching for id", mediaProjet.id)
         let projet = projets.find(tpm => tpm.id === mediaProjet.id)
         if (!projet) {
           projet = { ...mediaProjet, medias: [] }
