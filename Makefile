@@ -12,3 +12,6 @@ strapi-dev:
 
 strapi-deploy:
 	cd strapi && fly deploy
+
+www-cachebump:
+	./scripts/cachebump.sh
