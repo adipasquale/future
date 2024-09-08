@@ -55,15 +55,23 @@ module.exports = function (eleventyConfig) {
     const maxWidth = Math.min(width, maxResponsiveImageWidth)
     const maxHeight = Math.round(maxWidth * (3 / 2))
 
-    return photoswipeLink(`
-      <img
-        width="${maxWidth}"
-        height="${maxHeight}"
-        sizes="(min-width: 50em) 50em, 100vw"
-        srcset="${responsiveImageWidths.map(w => `https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_fill,ar_2:3,w_${w}/${filename} ${w}w`).join(", ")}"
-        src="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_fill,ar_2:3,w_512/${filename}"
-        alt="${caption || ""}" />
-    `, media)
+    if (ext == ".mp4") {
+      return `
+        <video controls width="800">
+          <source src="https://res.cloudinary.com/outofscreen/video/upload/f_auto/q_auto/c_fill,ar_2:3,w_512/${filename}">
+        </video>
+      `
+    } else {
+      return photoswipeLink(`
+        <img
+          width="${maxWidth}"
+          height="${maxHeight}"
+          sizes="(min-width: 50em) 50em, 100vw"
+          srcset="${responsiveImageWidths.map(w => `https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_fill,ar_2:3,w_${w}/${filename} ${w}w`).join(", ")}"
+          src="https://res.cloudinary.com/outofscreen/image/upload/f_auto/q_auto/c_fill,ar_2:3,w_512/${filename}"
+          alt="${caption || ""}" />
+      `, media)
+    }
   })
 
   eleventyConfig.addFilter("markdown", function (value) {

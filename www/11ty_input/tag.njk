@@ -11,11 +11,13 @@ permalink: "tags/{{ tag.attributes.titre | slugify }}/"
 
 {% block content %}
   {% for projet in tag.projets %}
-    <h3>
-      <a href="/projets/{{ projet.nom | slugify }}">
-        Projet {{projet.nom}}
-      </a>
-    </h3>
+    {% if projet.nom %}
+      <h3>
+        <a href="/projets/{{ projet.nom | slugify }}">
+          Projet {{projet.nom}}
+        </a>
+      </h3>
+    {% endif %}
     <div class="photos-grid">
       {% for media in projet.medias %}
         {% galleryImage media, "<a href='/'>{{tag.attributes.titre}}</a>" %}
