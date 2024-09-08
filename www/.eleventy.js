@@ -56,11 +56,15 @@ module.exports = function (eleventyConfig) {
     const maxHeight = Math.round(maxWidth * (3 / 2))
 
     if (ext == ".mp4") {
+      const publicId = media.attributes.provider_metadata.public_id
       return `
-        <video controls width="800" preload="auto">
-          <source src="https://res.cloudinary.com/outofscreen/video/upload/q_auto:best,vc_vp9/f_auto/c_fill,ar_2:3,w_1024/${hash}.webm" type="video/webm; codecs=vp9">
-          <source src="https://res.cloudinary.com/outofscreen/video/upload/q_auto:best,vc_h265/f_auto/c_fill,ar_2:3,w_1024/${hash}.mp4" type="video/mp4; codecs=hvc1">
-        </video>
+        <iframe
+          src="https://player.cloudinary.com/embed/?public_id=${publicId}&cloud_name=outofscreen&player[muted]=true&player[skin]=light&player[controlBar][volumePanel]=false&player[floatingWhenNotVisible]=false&player[autoplay]=true"
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+          style="height: auto; width: 100%; aspect-ratio: 640 / 360;"
+          allowfullscreen
+          frameborder="0"
+        ></iframe>
       `
     } else {
       return photoswipeLink(`
