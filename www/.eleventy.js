@@ -57,8 +57,9 @@ module.exports = function (eleventyConfig) {
 
     if (ext == ".mp4") {
       return `
-        <video controls width="800">
-          <source src="https://res.cloudinary.com/outofscreen/video/upload/f_auto/q_auto/c_fill,ar_2:3,w_512/${filename}">
+        <video controls width="800" preload="auto">
+          <source src="https://res.cloudinary.com/outofscreen/video/upload/q_auto:best,vc_vp9/f_auto/c_fill,ar_2:3,w_1024/${hash}.webm" type="video/webm; codecs=vp9">
+          <source src="https://res.cloudinary.com/outofscreen/video/upload/q_auto:best,vc_h265/f_auto/c_fill,ar_2:3,w_1024/${hash}.mp4" type="video/mp4; codecs=hvc1">
         </video>
       `
     } else {
