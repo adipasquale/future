@@ -5,7 +5,6 @@
 - [futurefuture.fr](https://www.futurefuture.fr) : le site public
 - [future-strapi.fly.dev/admin](https://future-strapi.fly.dev/admin) : site pour gérer le contenu (via Strapi)
 
-
 ```mermaid
 flowchart TD
   subgraph GitHub
@@ -39,7 +38,6 @@ flowchart TD
   visiteur -- consulte --> www
 ```
 
-
 ## Local
 
 - `cp strapi/.env.example strapi/.env` et configurez les variables d'environnement
@@ -64,12 +62,3 @@ fly secrets set APP_KEYS=$(openssl rand -base64 32) \
   CLOUDINARY_KEY=123456789 \
   CLOUDINARY_SECRET=-abcdefghijklmnop
 ```
-
-
-## TODO
-
-- dans le menu
-  - splitter volontairement les projets a gauche
-  - eventuellement justifier la 3e colonne du menu a droite et celle du centre au centre
-
-
