@@ -14,7 +14,7 @@
     "@strapi/plugin-users-permissions": "^4",
     "@strapi/provider-upload-cloudinary": "^4",
     "@strapi/strapi": "^4",
-    "better-sqlite3": "^8",
+    "better-sqlite3": "^11",
     "strapi-plugin-github-publish": "github:adipasquale/strapi-plugin-github-publish"
   },
   "author": {
@@ -24,8 +24,7 @@
     "uuid": "6838b935-f309-49a3-b9d8-9764b0b54b1d"
   },
   "engines": {
-    "node": ">=23.0.0",
-    "npm": ">=10.0.0"
+    "node": "<=20"
   },
   "license": "MIT"
 }
