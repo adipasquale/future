@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:20
 RUN apt-get update && apt-get install libvips-dev -y
 ENV NODE_ENV=production
 WORKDIR /opt/
