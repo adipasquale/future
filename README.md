@@ -10,10 +10,10 @@ flowchart TD
   subgraph GitHub
     code["📁 Code Source"]
     ghaction["⚙️ GitHub Action Eleventy"]
-    www["🌎 site public www.future.com"]
+    www["🌎 site public"]
   end
   subgraph Fly.io
-    strapi["🌎 site web gestion de contenu"]
+    strapi["🌎 site CMS"]
     db["📁 base de données"]
   end
   subgraph Cloudinary
