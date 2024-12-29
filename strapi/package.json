@@ -2,7 +2,7 @@
   "name": "future",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "Strapi CMS for futurfutur.fr",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
@@ -18,7 +18,7 @@
     "strapi-plugin-github-publish": "github:adipasquale/strapi-plugin-github-publish"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Adrien Di Pasquale"
   },
   "strapi": {
     "uuid": "6838b935-f309-49a3-b9d8-9764b0b54b1d"
