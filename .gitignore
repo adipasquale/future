@@ -7,6 +7,7 @@ strapi/build
 strapi/.strapi-updater.json
 strapi/future.db
 strapi/.cache
+strapi/.strapi
 
 www/.cache
 www/11ty_output
